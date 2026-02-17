@@ -1,0 +1,557 @@
+<sdf version='1.11'>
+  <model name='target'>
+    <pose>0 10 0 0 0 0</pose>
+    <link name='base_link'>
+      <inertial>
+        <mass>35</mass>
+        <pose>0 -0.16220999999999999 0 0 0 0</pose>
+        <inertia>
+          <ixx>14.85825</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.3182499999999999</iyy>
+          <iyz>0</iyz>
+          <izz>16.178249999999998</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <mesh>
+            <uri>models://monodrone_1800/meshes/collider.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <geometry>
+          <mesh>
+            <uri>models://monodrone_1800/meshes/visual.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <plugin name='gz::sim::systems::Hydrodynamics' filename='gz-waves1-hydrodynamics-system'>
+      <enable>interceptor::base_link</enable>
+      <enable>target::base_link</enable>
+      <hydrodynamics>
+        <damping_on>1</damping_on>
+        <viscous_drag_on>1</viscous_drag_on>
+        <pressure_drag_on>1</pressure_drag_on>
+        <cDampL1>10.8</cDampL1>
+        <cDampL2>10.0</cDampL2>
+        <cDampR1>20.0</cDampR1>
+        <cDampR2>12.5</cDampR2>
+        <cPDrag1>72.4</cPDrag1>
+        <cPDrag2>0.0</cPDrag2>
+        <fPDrag>1.0</fPDrag>
+        <cSDrag1>0.0</cSDrag1>
+        <cSDrag2>0.0</cSDrag2>
+        <fSDrag>0.0</fSDrag>
+        <vRDrag>10.0</vRDrag>
+      </hydrodynamics>
+    </plugin>
+    <model name='sensors_frame'>
+      <link name='base_link'>
+        <inertial>
+          <mass>0.5</mass>
+        </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>models://sensors_frame/meshes/visual.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <model name='cam_rgb'>
+        <link name='base_link'>
+          <inertial>
+            <mass>0.10000000000000001</mass>
+          </inertial>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>models://cam_rgb/meshes/visual.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+          <sensor name='cam_rgb' type='camera'>
+            <pose>0 0.10000000000000001 0 0 0 1.5708</pose>
+            <always_on>true</always_on>
+            <update_rate>25</update_rate>
+            <camera>
+              <horizontal_fov>0.80000000000000004</horizontal_fov>
+              <image>
+                <width>960</width>
+                <height>600</height>
+                <format>R8G8B8</format>
+              </image>
+              <clip>
+                <near>0.02</near>
+                <far>300</far>
+              </clip>
+              <noise>
+                <mean>0</mean>
+                <stddev>0.0070000000000000001</stddev>
+                <type>gaussian</type>
+              </noise>
+              <intrinsics>
+                <fx>2270.61</fx>
+                <fy>2349.79</fy>
+                <cx>960</cx>
+                <cy>600</cy>
+                <s>0</s>
+              </intrinsics>
+            </camera>
+          </sensor>
+        </link>
+        <pose>-0.029617000000000001 -0.24911 0.44233 0 0 0</pose>
+      </model>
+      <joint name='fix_cam_rgb' type='fixed'>
+        <parent>base_link</parent>
+        <child>cam_rgb::base_link</child>
+      </joint>
+      <model name='cam_monochrome'>
+        <link name='base_link'>
+          <inertial>
+            <mass>0.10000000000000001</mass>
+          </inertial>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>models://cam_monochrome/meshes/visual.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+          <sensor name='cam_monochrome' type='camera'>
+            <pose>0 0.10000000000000001 0 0 0 1.5708</pose>
+            <always_on>true</always_on>
+            <update_rate>25</update_rate>
+            <camera>
+              <pose>0 0.10000000000000001 0 0 0 1.5708</pose>
+              <horizontal_fov>1.2</horizontal_fov>
+              <image>
+                <width>960</width>
+                <height>600</height>
+                <format>L8</format>
+              </image>
+              <clip>
+                <near>0.02</near>
+                <far>300</far>
+              </clip>
+              <noise>
+                <mean>0</mean>
+                <stddev>0.0070000000000000001</stddev>
+                <type>gaussian</type>
+              </noise>
+            </camera>
+          </sensor>
+        </link>
+        <pose>0.027123999999999999 -0.25531999999999999 0.44105 0 0 0</pose>
+      </model>
+      <joint name='fix_cam_monochrome' type='fixed'>
+        <parent>base_link</parent>
+        <child>cam_monochrome::base_link</child>
+      </joint>
+      <model name='cam_thermal'>
+        <link name='base_link'>
+          <inertial>
+            <mass>0.10000000000000001</mass>
+          </inertial>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>models://cam_thermal/meshes/visual.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+        <pose>0 -0.18504000000000001 0.49095499999999997 0 0 0</pose>
+      </model>
+      <joint name='fix_cam_thermal' type='fixed'>
+        <parent>base_link</parent>
+        <child>cam_thermal::base_link</child>
+      </joint>
+      <model name='lidar_os1-64'>
+        <link name='base_link'>
+          <inertial>
+            <mass>0.10000000000000001</mass>
+          </inertial>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>models://lidar_os1-64/meshes/visual.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+          <sensor name='lidar_sensor' type='gpu_ray'>
+            <pose>0 0 0 0 0 0</pose>
+            <update_rate>10</update_rate>
+            <visualize>true</visualize>
+            <lidar>
+              <scan>
+                <horizontal>
+                  <samples>1024</samples>
+                  <resolution>1</resolution>
+                  <min_angle>-3.1415899999999999</min_angle>
+                  <max_angle>3.1415899999999999</max_angle>
+                </horizontal>
+                <vertical>
+                  <samples>64</samples>
+                  <resolution>1</resolution>
+                  <min_angle>-0.39300000000000002</min_angle>
+                  <max_angle>0.39300000000000002</max_angle>
+                </vertical>
+              </scan>
+              <range>
+                <min>0.050000000000000003</min>
+                <max>120</max>
+                <resolution>0.001</resolution>
+              </range>
+              <noise>
+                <type>gaussian</type>
+                <mean>0</mean>
+                <stddev>0</stddev>
+              </noise>
+              <visibility_mask>55</visibility_mask>
+            </lidar>
+          </sensor>
+        </link>
+        <pose>0 -0.21115999999999999 0.55301999999999996 0 0 0</pose>
+      </model>
+      <joint name='fix_lidar_os1-64' type='fixed'>
+        <parent>base_link</parent>
+        <child>lidar_os1-64::base_link</child>
+      </joint>
+      <model name='radar_ARS-408'>
+        <link name='base_link'>
+          <inertial>
+            <mass>0.10000000000000001</mass>
+          </inertial>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>models://radar_ARS-408/meshes/visual.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+        <pose>0 -0.20727999999999999 0.36112 0 0 0</pose>
+      </model>
+      <joint name='fix_radar_ARS-408' type='fixed'>
+        <parent>base_link</parent>
+        <child>radar_ARS-408::base_link</child>
+      </joint>
+      <model name='gps'>
+        <link name='base_link'>
+          <inertial>
+            <mass>0.10000000000000001</mass>
+          </inertial>
+          <visual name='visual'>
+            <geometry>
+              <box>
+                <size>0.050000000000000003 0.050000000000000003 0.050000000000000003</size>
+              </box>
+            </geometry>
+          </visual>
+          <sensor name='gps' type='navsat'>
+            <always_on>true</always_on>
+            <update_rate>1</update_rate>
+            <horizontal_position_noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </horizontal_position_noise>
+            <vertical_position_noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </vertical_position_noise>
+            <horizontal_velocity_noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </horizontal_velocity_noise>
+            <vertical_velocity_noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </vertical_velocity_noise>
+            <gps/>
+          </sensor>
+          <spherical_coordinates>
+            <surface_model>EARTH_WGS84</surface_model>
+            <world_frame_orientation>ENU</world_frame_orientation>
+            <latitude_deg>48.199227</latitude_deg>
+            <longitude_deg>-3.014601</longitude_deg>
+            <elevation>0</elevation>
+            <heading_deg>0</heading_deg>
+          </spherical_coordinates>
+        </link>
+        <pose>0 -0.89000000000000001 0.51000000000000001 0 0 0</pose>
+      </model>
+      <joint name='fix_gps' type='fixed'>
+        <parent>base_link</parent>
+        <child>gps::base_link</child>
+      </joint>
+      <model name='imu'>
+        <link name='base_link'>
+          <inertial>
+            <mass>0.10000000000000001</mass>
+          </inertial>
+          <visual name='visual'>
+            <geometry>
+              <box>
+                <size>0.050000000000000003 0.050000000000000003 0.050000000000000003</size>
+              </box>
+            </geometry>
+          </visual>
+          <sensor name='imu' type='imu'>
+            <imu>
+              <orientation_reference_frame>
+                <localization>ENU</localization>
+              </orientation_reference_frame>
+              <linear_acceleration>
+                <x>
+                  <noise type='gaussian'>
+                    <mean>0</mean>
+                    <stddev>0.001</stddev>
+                  </noise>
+                </x>
+                <y>
+                  <noise type='gaussian'>
+                    <mean>0</mean>
+                    <stddev>0.001</stddev>
+                  </noise>
+                </y>
+                <z>
+                  <noise type='gaussian'>
+                    <mean>0</mean>
+                    <stddev>0.001</stddev>
+                  </noise>
+                </z>
+              </linear_acceleration>
+              <angular_velocity>
+                <x>
+                  <noise type='gaussian'>
+                    <mean>0</mean>
+                    <stddev>0.001</stddev>
+                  </noise>
+                </x>
+                <y>
+                  <noise type='gaussian'>
+                    <mean>0</mean>
+                    <stddev>0.001</stddev>
+                  </noise>
+                </y>
+                <z>
+                  <noise type='gaussian'>
+                    <mean>0</mean>
+                    <stddev>0.001</stddev>
+                  </noise>
+                </z>
+              </angular_velocity>
+            </imu>
+            <always_on>true</always_on>
+            <update_rate>15</update_rate>
+            <visualize>true</visualize>
+          </sensor>
+        </link>
+        <pose>0 -0.89000000000000001 0.51000000000000001 0 0 0</pose>
+      </model>
+      <joint name='fix_imu' type='fixed'>
+        <parent>base_link</parent>
+        <child>imu::base_link</child>
+      </joint>
+      <pose>0 0 0 0 0 0</pose>
+    </model>
+    <joint name='fix_sensors_frame' type='fixed'>
+      <parent>base_link</parent>
+      <child>sensors_frame::base_link</child>
+    </joint>
+    <model name='target/engine_left'>
+      <link name='base_link'>
+        <inertial>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.88924499999999995</ixx>
+            <iyy>0.91112499999999996</iyy>
+            <izz>0.078125</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name='left_engine_visual'>
+          <geometry>
+            <mesh>
+              <uri>models://engine_1800/meshes/engine.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>0.88924499999999995</ixx>
+            <iyy>0.91112499999999996</iyy>
+            <izz>0.078125</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name='propeller_link'>
+        <pose>0 0 0 0 0 0</pose>
+        <visual name='propeller_visual'>
+          <geometry>
+            <mesh>
+              <uri>models://engine_1800/meshes/propeller.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>0.10000000000000001</mass>
+          <inertia>
+            <ixx>0.0085450000000000005</ixx>
+            <iyy>0.0085450000000000005</iyy>
+            <izz>0.0144</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name='propeller_joint' type='revolute'>
+        <pose relative_to='propeller_link'>0 0 0 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>propeller_link</child>
+        <axis>
+          <xyz expressed_in='propeller_link'>0 1 0</xyz>
+          <limit>
+            <lower>-1.7976900000000001e+308</lower>
+            <upper>1.7976900000000001e+308</upper>
+          </limit>
+        </axis>
+      </joint>
+      <plugin name='gz::sim::systems::Thruster' filename='gz-sim-thruster-system'>
+        <joint_name>propeller_joint</joint_name>
+        <thrust_coefficient>0.012</thrust_coefficient>
+        <fluid_density>1000</fluid_density>
+        <propeller_diameter>0.2</propeller_diameter>
+        <p_gain>1</p_gain>
+        <topic>propeller_joint</topic>
+      </plugin>
+      <pose>-0.17599999999999999 -0.72690999999999995 -0.089506000000000002 0 0 0</pose>
+    </model>
+    <joint name='fix_engine_left' type='fixed'>
+      <parent>base_link</parent>
+      <child>target/engine_left::base_link</child>
+    </joint>
+    <model name='target/engine_right'>
+      <link name='base_link'>
+        <inertial>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.88924499999999995</ixx>
+            <iyy>0.91112499999999996</iyy>
+            <izz>0.078125</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name='left_engine_visual'>
+          <geometry>
+            <mesh>
+              <uri>models://engine_1800/meshes/engine.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>0.88924499999999995</ixx>
+            <iyy>0.91112499999999996</iyy>
+            <izz>0.078125</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name='propeller_link'>
+        <pose>0 0 0 0 0 0</pose>
+        <visual name='propeller_visual'>
+          <geometry>
+            <mesh>
+              <uri>models://engine_1800/meshes/propeller.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>0.10000000000000001</mass>
+          <inertia>
+            <ixx>0.0085450000000000005</ixx>
+            <iyy>0.0085450000000000005</iyy>
+            <izz>0.0144</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name='propeller_joint' type='revolute'>
+        <pose relative_to='propeller_link'>0 0 0 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>propeller_link</child>
+        <axis>
+          <xyz expressed_in='propeller_link'>0 1 0</xyz>
+          <limit>
+            <lower>-1.7976900000000001e+308</lower>
+            <upper>1.7976900000000001e+308</upper>
+          </limit>
+        </axis>
+      </joint>
+      <plugin name='gz::sim::systems::Thruster' filename='gz-sim-thruster-system'>
+        <joint_name>propeller_joint</joint_name>
+        <thrust_coefficient>0.012</thrust_coefficient>
+        <fluid_density>1000</fluid_density>
+        <propeller_diameter>0.2</propeller_diameter>
+        <p_gain>1</p_gain>
+        <topic>propeller_joint</topic>
+      </plugin>
+      <pose>0.17599999999999999 -0.72690999999999995 -0.089506000000000002 0 0 0</pose>
+    </model>
+    <joint name='fix_engine_right' type='fixed'>
+      <parent>base_link</parent>
+      <child>target/engine_right::base_link</child>
+    </joint>
+    <plugin name='ArduPilotPlugin' filename='ArduPilotPlugin'>
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9002</fdm_port_in>
+      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+      <lock_step>1</lock_step>
+      <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
+      <gazeboXYZToNED>0 0 0 3.141593 0 1.57079632</gazeboXYZToNED>
+      <imuName>imu_sensor</imuName>
+      <control channel='3'>
+        <jointName>engine_left::propeller_joint</jointName>
+        <useForce>1</useForce>
+        <multiplier>10</multiplier>
+        <servo_min>1000</servo_min>
+        <servo_max>2000</servo_max>
+        <type>COMMAND</type>
+        <cmd_topic>target/engine_left/joint/propeller_joint/cmd_thrust</cmd_topic>
+      </control>
+      <control channel='4'>
+        <jointName>engine_right::propeller_joint</jointName>
+        <useForce>1</useForce>
+        <multiplier>10</multiplier>
+        <servo_min>1000</servo_min>
+        <servo_max>2000</servo_max>
+        <type>COMMAND</type>
+        <cmd_topic>target/engine_right/joint/propeller_joint/cmd_thrust</cmd_topic>
+      </control>
+    </plugin>
+  </model>
+</sdf>

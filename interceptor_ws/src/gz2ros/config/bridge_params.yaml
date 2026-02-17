@@ -1,0 +1,198 @@
+#Bridge between gazebo and ros for the "depth sensor" and the imu
+
+# Full set of configurations https://github.com/gazebosim/ros_gz/tree/ros2/ros_gz_bridge
+
+- ros_topic_name: "interceptor_sim/interceptor/imu"
+  gz_topic_name: "/world/interceptor_sim/model/interceptor/model/sensors_frame/model/imu/link/base_link/sensor/imu/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  lazy: true
+  direction: GZ_TO_ROS 
+
+
+
+- ros_topic_name: "interceptor_sim/interceptor/engine_left/cmd_thrust"
+  gz_topic_name: "/interceptor/engine_left/propeller_joint/cmd_thrust"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  lazy: true
+  direction: ROS_TO_GZ 
+
+- ros_topic_name: "interceptor_sim/interceptor/engine_right/cmd_thrust"
+  gz_topic_name: "/interceptor/engine_right/propeller_joint/cmd_thrust"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  lazy: true
+  direction: ROS_TO_GZ 
+
+- ros_topic_name: "interceptor_sim/interceptor/engine_left/ang_vel"
+  gz_topic_name: "/interceptor/engine_left/propeller_joint/ang_vel"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  lazy: true
+  direction: GZ_TO_ROS 
+
+- ros_topic_name: "interceptor_sim/interceptor/engine_right/ang_vel"
+  gz_topic_name: "/interceptor/engine_right/propeller_joint/ang_vel"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  lazy: true
+  direction: GZ_TO_ROS 
+
+
+
+
+- ros_topic_name: "interceptor_sim/interceptor/cam_rgb/image"
+  gz_topic_name: "/world/interceptor_sim/model/interceptor/model/sensors_frame/model/cam_rgb/link/base_link/sensor/cam_rgb/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+
+
+- ros_topic_name: "interceptor_sim/interceptor/cam_mono/image"
+  gz_topic_name: "/world/interceptor_sim/model/interceptor/model/sensors_frame/model/cam_monochrome/link/base_link/sensor/cam_monochrome/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+- ros_topic_name: "interceptor_sim/interceptor/cam_rgb/image"
+  gz_topic_name: "/world/interceptor_sim/model/interceptor/model/sensors_frame/model/cam_rgb/link/base_link/sensor/cam_rgb/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+
+
+- ros_topic_name: "interceptor_sim/interceptor/gps"
+  gz_topic_name: "/world/interceptor_sim/model/interceptor/model/sensors_frame/model/gps/link/base_link/sensor/gps/navsat"
+  ros_type_name: "sensor_msgs/msg/NavSatFix"
+  gz_type_name: "gz.msgs.NavSat"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+
+  
+- ros_topic_name: "interceptor_sim/interceptor/lidar"
+  gz_topic_name: "/world/interceptor_sim/model/interceptor/model/sensors_frame/model/lidar_os1-64/link/base_link/sensor/lidar_sensor/scan"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+- ros_topic_name: "interceptor_sim/interceptor/lidar_points"
+  gz_topic_name: "/world/interceptor_sim/model/interceptor/model/sensors_frame/model/lidar_os1-64/link/base_link/sensor/lidar_sensor/scan/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+
+
+
+  #-----------------------------------------------------------------------------------------------------
+
+
+
+- ros_topic_name: "interceptor_sim/target/imu"
+  gz_topic_name: "/world/interceptor_sim/model/target/model/sensors_frame/model/imu/link/base_link/sensor/imu/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  lazy: true
+  direction: GZ_TO_ROS 
+
+
+
+- ros_topic_name: "interceptor_sim/target/engine_left/cmd_thrust"
+  gz_topic_name: "/target/engine_left/propeller_joint/cmd_thrust"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  lazy: true
+  direction: ROS_TO_GZ 
+
+- ros_topic_name: "interceptor_sim/target/engine_right/cmd_thrust"
+  gz_topic_name: "/target/engine_right/propeller_joint/cmd_thrust"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  lazy: true
+  direction: ROS_TO_GZ 
+
+- ros_topic_name: "interceptor_sim/target/engine_left/ang_vel"
+  gz_topic_name: "/target/engine_left/propeller_joint/ang_vel"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  lazy: true
+  direction: GZ_TO_ROS 
+
+- ros_topic_name: "interceptor_sim/target/engine_right/ang_vel"
+  gz_topic_name: "/target/engine_right/propeller_joint/ang_vel"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  lazy: true
+  direction: GZ_TO_ROS 
+
+
+
+
+- ros_topic_name: "interceptor_sim/target/cam_rgb/image"
+  gz_topic_name: "/world/interceptor_sim/model/target/model/sensors_frame/model/cam_rgb/link/base_link/sensor/cam_rgb/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+
+
+- ros_topic_name: "interceptor_sim/target/cam_mono/image"
+  gz_topic_name: "/world/interceptor_sim/model/target/model/sensors_frame/model/cam_monochrome/link/base_link/sensor/cam_monochrome/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+- ros_topic_name: "interceptor_sim/target/cam_rgb/image"
+  gz_topic_name: "/world/interceptor_sim/model/target/model/sensors_frame/model/cam_rgb/link/base_link/sensor/cam_rgb/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+
+
+- ros_topic_name: "interceptor_sim/target/gps"
+  gz_topic_name: "/world/interceptor_sim/model/target/model/sensors_frame/model/gps/link/base_link/sensor/gps/navsat"
+  ros_type_name: "sensor_msgs/msg/NavSatFix"
+  gz_type_name: "gz.msgs.NavSat"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+
+  
+- ros_topic_name: "interceptor_sim/target/lidar"
+  gz_topic_name: "/world/interceptor_sim/model/target/model/sensors_frame/model/lidar_os1-64/link/base_link/sensor/lidar_sensor/scan"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  lazy: true
+  direction:
+    GZ_TO_ROS
+
+- ros_topic_name: "interceptor_sim/target/lidar_points"
+  gz_topic_name: "/world/interceptor_sim/model/target/model/sensors_frame/model/lidar_os1-64/link/base_link/sensor/lidar_sensor/scan/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  lazy: true
+  direction:
+    GZ_TO_ROS

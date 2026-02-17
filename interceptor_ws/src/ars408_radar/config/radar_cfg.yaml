@@ -1,0 +1,41 @@
+#params for the cfg of the radar
+cfg_radar_0x200:
+  - name: MaxDistance
+    valid: 1
+    value: 200
+
+  - name: SensorID
+    valid: 1
+    value: 0
+
+  - name: RadarPower
+    valid: 1
+    value: 0
+
+  - name: OutputType
+    valid: 1
+    value: 1
+
+  - name: SendQuality
+    valid: 1
+    value: 1
+
+  - name: SendExtInfo
+    valid: 1
+    value: 1
+
+  - name: SortIndex
+    valid: 1
+    value: 1
+
+  - name: StoreInNVM
+    valid: 0
+    value: 1
+
+  - name: CtrlRelay
+    valid: 0
+    value: 0
+
+  - name: Threshold
+    valid: 0
+    value: 0

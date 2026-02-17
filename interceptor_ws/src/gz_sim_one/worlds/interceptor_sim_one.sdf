@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="interceptor_sim">
+
+    <physics name="5ms" type="dart">
+      <max_step_size>0.005</max_step_size>
+      <real_time_factor>1.</real_time_factor>
+      <real_time_update_rate>0.0</real_time_update_rate>
+    </physics>
+
+   
+    <plugin filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    <plugin filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+      <background_color>0.8 0.8 0.8</background_color>
+    </plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    <plugin filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    <plugin filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+    <plugin
+      filename="gz-sim-navsat-system"
+      name="gz::sim::systems::NavSat">
+    </plugin>
+
+
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>48.199227</latitude_deg>
+      <longitude_deg>-3.014601</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
+    <scene>
+      <ambient>1.0 1.0 1.0</ambient>
+      <background>0.8 0.8 0.8</background>
+      <sky></sky>
+    </scene>
+
+    <light type="directional" name="sun">
+      <cast_shadows>false</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.6 0.6 0.6 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <include>
+      <pose>0 0 0 0 0 0</pose>
+      <uri>models://waves</uri>
+    </include>
+
+
+    <include>
+      <namespace>interceptor</namespace>
+      <name>interceptor</name>
+      <pose>0 0 0 0 0 -1.57</pose>
+      <uri>models://monodrone_1800_one</uri>
+    </include>
+
+    <include>
+      <namespace>target</namespace>
+      <name>target</name>
+      <pose>10 0 0 0 0 0</pose>
+      <uri>models://monodrone_1800_one_target</uri>
+    </include>
+
+  </world>
+</sdf>

@@ -1,0 +1,97 @@
+#config params for the filters of the objects
+
+filters_0x202:
+  # index, valid, active, min, max
+  #PARAMS FOR OBJECTS AND CLUSTERS
+
+  - index: 0x0   # NofObj/Clusters
+    valid: 1
+    active: 1
+    min: 0
+    max: 10
+
+  - index: 0x1   # Distance
+    valid: 1
+    active: 1
+    min: 0
+    max: 150
+
+  - index: 0x2   # Azimuth
+    valid: 1
+    active: 0
+    min: -40
+    max: 40
+
+  - index: 0x3   # VrelOncome
+    valid: 0
+    active: 0
+    min: 0
+    max: 0
+
+  - index: 0x4   # VrelDepart
+    valid: 0
+    active: 0
+    min: 0
+    max: 0
+
+  - index: 0x5   # RCS
+    valid: 1
+    active: 0
+    min: -15
+    max: 15
+
+    #PARAMS ONLY FOR OBJECTS
+
+  - index: 0x6   # Lifetime
+    valid: 0
+    active: 0
+    min: 0
+    max: 0
+
+  - index: 0x7   # Size
+    valid: 1
+    active: 1
+    min: 0.5
+    max: 5
+
+  - index: 0x8   # ProbExists
+    valid: 1
+    active: 1
+    min: 5
+    max: 7
+
+  - index: 0x9   # Y
+    valid: 1
+    active: 0
+    min: -100
+    max: 100
+
+  - index: 0xA   # X
+    valid: 1
+    active: 0
+    min: -100
+    max: 100
+
+  - index: 0xB   # VYRightLeft
+    valid: 0
+    active: 0
+    min: 0
+    max: 0
+
+  - index: 0xC   # VXOncome
+    valid: 0
+    active: 0
+    min: 0
+    max: 0
+
+  - index: 0xD   # VYLeftRight
+    valid: 0
+    active: 0
+    min: 0
+    max: 0
+
+  - index: 0xE   # VXDepart
+    valid: 0
+    active: 0
+    min: 0
+    max: 0

@@ -1,0 +1,16 @@
+To open the port on ubuntu with an canusb adapter :
+
+1) 
+ls /dev/ttyUSB* 
+(pour repérer le port USB du canUSB)
+
+2) 
+sudo slcand -o -s5 /dev/ttyUSB0                        
+sudo ip link set can0 type can bitrate 500000
+sudo ip link set up can0
+
+3) #to see the can trams
+candump can0
+
+4) 
+launch the main

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<robot name="monodrone_target">
+
+  <!-- ===================
+       BASE
+  ==================== -->
+
+  <link name="base_link_target"/>
+
+  <!-- sensors_frame, à l’origine -->
+  <link name="sensors_frame_target"/>
+
+  <joint name="fix_sensors_frame_target" type="fixed">
+    <parent link="base_link_target"/>
+    <child link="sensors_frame_target"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- ===================
+       MOTEURS
+  ==================== -->
+
+  <link name="engine_left"/>
+
+  <joint name="fix_engine_left_target" type="fixed">
+    <parent link="base_link_target"/>
+    <child link="engine_left"/>
+    <origin xyz="-0.176 -0.72691 -0.089506" rpy="0 0 0"/>
+  </joint>
+
+  <link name="engine_right"/>
+
+  <joint name="fix_engine_right_target" type="fixed">
+    <parent link="base_link_target"/>
+    <child link="engine_right"/>
+    <origin xyz="0.176 -0.72691 -0.089506" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- ===================
+       CAPTEURS
+       (tous attachés à sensors_frame)
+  ==================== -->
+
+  <!-- cam_rgb -->
+  <link name="cam_rgb_target"/>
+  <joint name="fix_cam_rgb_target" type="fixed">
+    <parent link="sensors_frame_target"/>
+    <child link="cam_rgb_target"/>
+    <origin xyz="-0.029617 -0.24911 0.44233" rpy="0 0 0"/>
+  </joint>
+
+  <!-- cam_monochrome -->
+  <link name="cam_mono_target"/>
+  <joint name="fix_cam_monochrome_target" type="fixed">
+    <parent link="sensors_frame_target"/>
+    <child link="cam_mono_target"/>
+    <origin xyz="0.027124 -0.25532 0.44105" rpy="0 0 0"/>
+  </joint>
+
+  <!-- cam_thermal -->
+  <link name="cam_thermal_target"/>
+  <joint name="fix_cam_thermal_target" type="fixed">
+    <parent link="sensors_frame_target"/>
+    <child link="cam_thermal_target"/>
+    <origin xyz="0 -0.18504 0.490955" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- lidar_os1-64 -->
+  <link name="lidar_target"/>
+  <joint name="fix_lidar_os1_64_target" type="fixed">
+    <parent link="sensors_frame_target"/>
+    <child link="lidar_target"/>
+    <origin xyz="0 -0.21116 0.55302" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- radar_ARS-408 -->
+  <link name="radar_ars_408_target"/>
+  <joint name="fix_radar_ars_408_target" type="fixed">
+    <parent link="sensors_frame_target"/>
+    <child link="radar_ars_408_target"/>
+    <origin xyz="0 -0.20728 0.36112" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- gps -->
+  <link name="gps_target"/>
+  <joint name="fix_gps_target" type="fixed">
+    <parent link="sensors_frame_target"/>
+    <child link="gps_target"/>
+    <origin xyz="0 -0.89 0.51" rpy="0 0 0"/>
+  </joint>
+
+  <!-- imu -->
+  <link name="imu_target"/>
+  <joint name="fix_imu_target" type="fixed">
+    <parent link="sensors_frame_target"/>
+    <child link="imu_target"/>
+    <origin xyz="0 -0.89 0.51" rpy="0 0 0"/>
+  </joint>
+
+
+</robot>
