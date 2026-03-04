@@ -1,0 +1,14 @@
+control_node:
+  ros__parameters:
+    x_center: 320
+    height_target: 0.63
+    desired_height: 400.0
+    lamda: 0.5
+    fx: 642.0
+    fy: 634.0
+    cx: 330.0
+    cy: 242.0
+    Vmax: 2.0
+    filter_alpha: 0.4
+    timeout_sec: 5.0
+    control_rate_hz: 20.0

@@ -1,0 +1,23 @@
+color_detector:
+  ros__parameters:
+    image_topic: "image/image_raw"
+    detections_topic: "detections_output"
+    debug_image_topic: "color_detector/debug_image"
+    publish_debug_image: true
+    color_label: "target_color"
+
+    # HSV thresholds (0-179 for H, 0-255 for S/V).
+    # Example defaults target yellow.
+    h_low: 15
+    s_low: 40
+    v_low: 80
+    h_high: 40
+    s_high: 255
+    v_high: 255
+
+    min_area: 300.0
+    blur_ksize: 5
+    erode_iters: 1
+    dilate_iters: 2
+    morph_ksize: 5
+    bbox_alpha: 0.3
