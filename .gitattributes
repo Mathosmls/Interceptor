@@ -2,3 +2,5 @@
 *.mcap filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.pdf filter=lfs diff=lfs merge=lfs -text
+Intercepteur_poster.pdf -filter -diff -merge text
+Intercepteur_rapport.pdf -filter -diff -merge text
