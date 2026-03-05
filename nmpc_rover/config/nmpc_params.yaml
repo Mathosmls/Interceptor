@@ -1,0 +1,23 @@
+/**:
+  ros__parameters:
+
+    # ── Contrôleur NMPC ──────────────────────────────
+    prediction_horizon: 10      # Nombre de pas de prédiction
+    dt: 0.1                     # Pas de temps (s)
+    control_weight: 0.05        # Poids coût de contrôle (R)
+    state_weight: 1.0           # Poids erreur de position (Q_state)
+    heading_weight: 5.0         # Poids erreur d'orientation (Q_heading)
+    control_rate: 10.0          # Fréquence boucle de contrôle (Hz)
+
+    # ── Limites rover ────────────────────────────────
+    max_linear_vel: 1.5         # m/s  (adapter à votre rover)
+    max_angular_vel: 1.0        # rad/s
+
+    # ── Trajectoire sinusoïdale ──────────────────────
+    traj_amplitude: 3.0         # m  (hauteur de la sinusoïde)
+    traj_wavelength: 10.0       # m  (longueur d'onde)
+    traj_forward_speed: 1.0     # m/s (vitesse de progression nominale)
+    traj_total_length: 50.0     # m  (longueur totale de la trajectoire)
+
+    # ── Paramètre de suivi ───────────────────────────
+    lookahead_distance: 2.0     # m  (distance de regard devant)
